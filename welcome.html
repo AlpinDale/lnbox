@@ -327,12 +327,17 @@
 
         @media (max-width: 600px) {
             body {
-                margin: 20px;
-                padding: 10px 20px;
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
             }
 
             .container {
                 padding: 20px;
+                border-radius: 0;
+                margin: 0;
+                min-height: 100vh;
+                border: none;
             }
 
             h1 {
@@ -341,18 +346,8 @@
             }
 
             .theme-toggle {
-                top: 20px;
-                right: 20px;
-            }
-
-            .note {
-                margin: 1em 0;
-                padding: 0.8em;
-            }
-
-            .email-address {
-                font-size: 0.9em;
-                padding: 4px 8px;
+                top: 10px;
+                right: 10px;
             }
         }
 
