@@ -372,6 +372,17 @@ main .subtitle {
 	padding: 0;
 }
 
+.mascot-glow {
+	background-color: var(--bg-color);
+	z-index: -1;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
+}
+
 .mascot img {
 	max-height: 85vh;
 	max-width: 60rem;
