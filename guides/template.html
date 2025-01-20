@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Reading Guides for Light Novel Collection">
-    <title>Reading Guides - Light Novels</title>
+    <meta name="description" content="Reading Guide - Light Novel Collection">
+    <title>{{ title }} - Light Novels</title>
 
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700&family=Inter:wght@400;500&display=swap" as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,58 +13,59 @@
           rel="stylesheet"
           media="print"
           onload="this.media='all'">
-
+    
     <link rel="stylesheet" href="../styles.css">
 
+    <!-- Add marked.js for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
     <style>
-        .guides-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5em;
-            margin: 2em 0;
+        /* Guide-specific styles */
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .guide-card {
-            background: var(--email-bg);
-            border-radius: 8px;
-            padding: 1.5em;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .guide-card:hover {
-            border-color: var(--button-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .guide-card h2 {
+        .guide-content h2 {
             color: var(--button-color);
-            margin-top: 0;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
+            margin-top: 2em;
+            font-size: 1.5em;
         }
 
-        .guide-card p {
+        .guide-content h3 {
+            color: var(--button-color);
+            margin-top: 1.5em;
+            font-size: 1.2em;
+        }
+
+        .guide-content ul, .guide-content ol {
+            padding-left: 1.5em;
+        }
+
+        .guide-content li {
             margin: 0.5em 0;
-            padding-left: 0;
         }
 
-        .guide-card p::before {
-            content: none;
+        .guide-content code {
+            background: var(--email-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.9em;
         }
 
-        .guide-card a {
-            color: inherit;
-            text-decoration: none;
-            display: block;
+        .guide-content pre {
+            background: var(--email-bg);
+            padding: 1em;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1em 0;
         }
 
-        .guide-card .icon {
-            font-size: 1.2em;
-            opacity: 0.8;
+        .guide-content pre code {
+            background: none;
+            padding: 0;
         }
 
         .back-button {
@@ -85,25 +86,27 @@
             content: '←';
         }
 
-        @media (max-width: 600px) {
-            .guides-grid {
-                grid-template-columns: 1fr;
-            }
+        .note {
+            background: var(--email-bg);
+            border-left: 3px solid var(--button-color);
+            padding: 1em;
+            margin: 1em 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Add loading indicator styles */
+        .loading {
+            text-align: center;
+            padding: 2em;
+            color: var(--button-color);
         }
     </style>
 </head>
 <body>
     <main role="main" class="container">
-        <a href="../welcome.html" class="back-button">Back to Library</a>
-        <h1><span>Reading Guides</span></h1>
-
-        <div class="guides-grid">
-            <div class="guide-card">
-                <a href="opds.md">
-                    <h2><span class="icon">📱</span> OPDS Guide</h2>
-                    <p>Learn how to connect your reading apps to the library using OPDS.</p>
-                </a>
-            </div>
+        <a href="index.html" class="back-button">Back to Guides</a>
+        <div class="guide-content">
+            <div class="loading">Loading guide...</div>
         </div>
     </main>
 
@@ -114,7 +117,7 @@
                 "nekokawa.png"
             ];
 
-            const path = '../images/';
+            const path = '/images/';
             const num = Math.floor(Math.random() * mascotImages.length);
             const img = mascotImages[num];
             const imgStr = `<img src="${path}${img}" alt="Mascot character" loading="lazy">`;
@@ -131,6 +134,47 @@
     </button>
 
     <script>
+        // Get the markdown filename from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const mdFile = urlParams.get('guide');
+
+        if (!mdFile) {
+            document.querySelector('.guide-content').innerHTML = `
+                <div class="note">
+                    <p>Error: No guide specified</p>
+                    <p>Please return to the <a href="index.html">guides index</a> and select a guide.</p>
+                </div>
+            `;
+        } else {
+            // Fetch and render markdown
+            fetch(mdFile)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Guide not found');
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    const content = marked.parse(markdown);
+                    document.querySelector('.guide-content').innerHTML = content;
+                    
+                    // Update page title
+                    const firstHeading = content.match(/<h1[^>]*>(.*?)<\/h1>/);
+                    if (firstHeading) {
+                        document.title = `${firstHeading[1]} - Light Novels`;
+                    }
+                })
+                .catch(error => {
+                    document.querySelector('.guide-content').innerHTML = `
+                        <div class="note">
+                            <p>Error loading guide: ${error.message}</p>
+                            <p>Please try refreshing the page or contact support if the problem persists.</p>
+                        </div>
+                    `;
+                });
+        }
+
+        // Theme toggle functionality
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
         let isDark = localStorage.getItem('theme') === 'dark' ||
                     (localStorage.getItem('theme') === null && prefersDark.matches);
@@ -177,24 +221,6 @@
 
         toggleTheme();
         toggleTheme();  // needed to set correct initial state
-
-        // Intercept clicks on .md links
-        document.addEventListener('click', function(e) {
-            // Find closest anchor tag
-            const link = e.target.closest('a');
-            if (!link) return;
-
-            // Check if it's a markdown link
-            if (link.href.endsWith('.md')) {
-                e.preventDefault();
-                
-                // Get the markdown filename
-                const mdFile = link.href.split('/').pop();
-                
-                // Redirect to template.html with the markdown file as a parameter
-                window.location.href = `template.html?guide=${mdFile}`;
-            }
-        });
     </script>
 </body>
 </html>
