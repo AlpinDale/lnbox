@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Light Novel Reading Guides">
+    <title>Guides - LNBox</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/" class="back-button">← Back</a>
+        </nav>
+
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                    d="M12 18c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6zm0-10c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0-4a1 1 0 0 1-1-1V1a1 1 0 0 1 2 0v2a1 1 0 0 1-1 1zm0 20a1 1 0 0 1-1-1v-2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1zM5.64 6.64a.997.997 0 0 1-.707-.293L3.52 4.93a1 1 0 0 1 1.414-1.414l1.414 1.414a1 1 0 0 1-.707 1.707zm12.72 12.72a.997.997 0 0 1-.707-.293l-1.414-1.414a1 1 0 1 1 1.414-1.414l1.414 1.414a1 1 0 0 1-.707 1.707zM3 13H1a1 1 0 1 1 0-2h2a1 1 0 0 1 0 2zm20 0h-2a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2zM4.93 20.48a1 1 0 0 1-.707-1.707l1.414-1.414a1 1 0 0 1 1.414 1.414l-1.414 1.414a.997.997 0 0 1-.707.293zm14.14-14.14a1 1 0 0 1-.707-1.707l1.414-1.414a1 1 0 1 1 1.414 1.414l-1.414 1.414a.997.997 0 0 1-.707.293z" />
+            </svg>
+        </button>
+    </header>
+
+    <main>
+        <div class="guides-container">
+            <h1>Reading Guides</h1>
+            <p class="subtitle">Helpful guides and resources for using this collection.</p>
+
+            <div class="guides-grid">
+                <a href="/guides/template.html?guide=opds" class="guide-card">
+                    <h2>OPDS Support</h2>
+                    <p>How to use OPDS to read the collection from your favorite device and app.</p>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="/scripts/theme.js"></script>
+</body>
+
+</html>
