@@ -712,3 +712,42 @@ main .subtitle {
 		color: #ffc1dd;
 	}
 }
+
+.login-form {
+	margin: 1rem 0;
+	width: 100%;
+	max-width: 300px;
+}
+
+.login-form form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+}
+
+.login-form input {
+	padding: 0.8rem 1rem;
+	border-radius: 8px;
+	border: 1px solid rgba(255, 105, 180, 0.2);
+	background: var(--bg-color);
+	color: var(--text-color);
+	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+	outline: none;
+	border-color: var(--button-color);
+	box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
+}
+
+.login-message {
+	margin-top: 0.5rem;
+	font-size: 0.9rem;
+	color: var(--button-color);
+	min-height: 1.2em;
+}
+
+.login-form .button {
+	margin-top: 0.5rem;
+}

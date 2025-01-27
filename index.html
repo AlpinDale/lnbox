@@ -39,26 +39,33 @@
 				friends.
 			</p>
 
-			<a href="/library" class="button" role="button">Enter the Library ✧</a>
-		</div>
+			<div class="login-form">
+				<form id="loginForm" onsubmit="handleLogin(event)">
+					<input type="text" id="username" placeholder="Username" required>
+					<input type="password" id="password" placeholder="Password" required>
+					<button type="submit" class="button">Login to Library ✧</button>
+				</form>
+				<p class="login-message" id="loginMessage"></p>
+			</div>
 
-		<div class="access-section">
-			<h3>Request Access</h3>
+			<div class="access-section">
+				<h3>Request Access</h3>
 
-			<div>
-				<div class="email-container">
-					<p>Email me at:</p>
-					<span class="email-address" role="button" tabindex="0" data-user="lnbox"
-						data-domain="alpindale.net">
-					</span>
-				</div>
+				<div>
+					<div class="email-container">
+						<p>Email me at:</p>
+						<span class="email-address" role="button" tabindex="0" data-user="lnbox"
+							data-domain="alpindale.net">
+						</span>
+					</div>
 
-				<div class="requirements">
-					<p>Include in your message:</p>
-					<ul>
-						<li>Your Discord username (if you have one)</li>
-						<li>How you found this collection</li>
-					</ul>
+					<div class="requirements">
+						<p>Include in your message:</p>
+						<ul>
+							<li>Your Discord username (if you have one)</li>
+							<li>How you found this collection</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -96,6 +103,7 @@
 	</div>
 
 	<script src="/scripts/theme.js"></script>
+	<script src="/scripts/login.js"></script>
 	<script>
 		const emailElement = document.querySelector('.email-address');
 		const user = emailElement.getAttribute('data-user');
