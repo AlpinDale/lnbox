@@ -29,7 +29,7 @@ Then, launch the app. Once inside Foliate, click on the `+ Add Catalog...` butto
 
 ![Foliate Add Catalog](catalog.png)
 
-Type in `https://web.alpindale.net/library/opds` in the URL field, and click `Add`.
+Type in `https://lnbox.moe/library/opds` in the URL field, and click `Add`.
 
 You will be prompted to enter a username and password. Use the same credentials you use to log in to the web interface.
 
@@ -43,7 +43,7 @@ For Android, I recommend using [Moon+ Reader](https://play.google.com/store/apps
 
 ### Setting up Moon+ Reader
 
-Open the hamburger menu on the top left, and click on `Net Library`. Then click on the three dots on the top right, and click on `Add new catalog`. Enter the URL `https://web.alpindale.net/library/opds` and click `Add`. You can optionally enter a Catalog Name, if you want to. It will ask you for a username and password, use the same credentials you use to log in to the web interface.
+Open the hamburger menu on the top left, and click on `Net Library`. Then click on the three dots on the top right, and click on `Add new catalog`. Enter the URL `https://lnbox.moe/library/opds` and click `Add`. You can optionally enter a Catalog Name, if you want to. It will ask you for a username and password, use the same credentials you use to log in to the web interface.
 
 
 The library should appear in the Net Library section. You can now search for your favorite light novels and read them! You may switch between the different libraries by clicking on them at the bottom of the page.
